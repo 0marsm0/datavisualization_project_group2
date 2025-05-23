@@ -11,6 +11,15 @@ body {
     padding: 0;
 }
 
+.taipy-navbar {
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    margin: 0;
+    width: 100% !important;
+    border-radius: 0 !important;
+}
+
 /* Titles */
 h1,
 h2,

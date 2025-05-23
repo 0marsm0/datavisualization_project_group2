@@ -16,13 +16,12 @@ page2_page, page2_state = page_2(df_long, raw_data_table)
 
 
 pages = {
-    "home": home_page,
-    "Courses": course_page,
-    "utbildningsområde": page2_page,
+    "Hemsida": home_page,
+    "Kurser": course_page,
+    "Utbildningsområde": page2_page,
     "Skolor": page_3,
-    "students": student_page,
-    "data": data_page,
-    "data": data_page,
+    "Studenter": student_page,
+    "Data": data_page,
     "Storytelling": storytelling_page,
 }
 

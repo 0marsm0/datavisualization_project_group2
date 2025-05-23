@@ -3,8 +3,10 @@ import taipy.gui.builder as tgb
 # from frontend.pages.page_3 import page as page3
 
 with tgb.Page() as home_page:
-    with tgb.part(class_name="container and card stack-large"):
-        tgb.navbar()
+    with tgb.part():
+        
+    with tgb.part(class_name="container card stack-large"):
+        tgb.navbar(class_name="taipy-nabvar")
 
         with tgb.part(class_name="max-text-width"):
             tgb.text("# Välkommen till YH dashboard 2024", mode="md")
