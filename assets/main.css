@@ -1,23 +1,21 @@
 @import "variables.css";
+@import "header.css";
 @import "layout_primitives.css";
 
 
-/* Font & background */
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    margin: 0;
+
+#root {
+    margin: 0 !important;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.taipy-navbar {
-    display: flex !important;
-    flex-direction: row !important;
-    padding: 0 !important;
-    margin: 0;
-    width: 100% !important;
-    border-radius: 0 !important;
+.main {
+    background: var(--bg-main);
+}
+
+.container {
+    width: 90%;
 }
 
 /* Titles */
@@ -26,51 +24,9 @@ h2,
 h3 {
     color: var(--primary);
     font-weight: 600;
-}
-
-/* Buttons */
-button {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--primary);
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-button:hover {
-    background-color: #1a4e8a;
-    color: white;
-}
-
-/* Cards */
-.taipy-card,
-.card {
-    background-color: var(--card-bg);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Grid layout */
-.home-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--s1);
-    margin-top: var(--s1);
-}
-
-/* Navigation cards */
-.nav-card {
-    border: 2px solid var(--primary);
-    border-radius: 12px;
-    padding: 16px;
     text-align: center;
-    transition: transform 0.2s ease;
+    margin: 0;
+    padding-top: 30px;
 }
 
-.nav-card:hover {
-    transform: scale(1.03);
-    background-color: #ebf8ff;
-}
+.card {}

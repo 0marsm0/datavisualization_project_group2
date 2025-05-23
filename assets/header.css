@@ -1,0 +1,60 @@
+@import "variables.css";
+
+.header {
+    background-color: var(--bg-card);
+    padding: 1rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.nav-button {
+    background-color: transparent;
+    color: var(--font-white);
+    border: 1px solid var(--primary);
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: none;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--primary);
+    color: var(--font-white);
+}
+
+.nav-button:active {
+    outline: var(--primary);
+}
+
+.logo {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.theme-toggle {
+    background-color: #2c2c3e;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.welcome {
+    margin-left: auto;
+    font-weight: 500;
+}

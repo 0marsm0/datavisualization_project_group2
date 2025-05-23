@@ -21,7 +21,6 @@ pages = {
     "Utbildningsområde": page2_page,
     "Skolor": page_3,
     "Studenter": student_page,
-    "Data": data_page,
     "Storytelling": storytelling_page,
 }
 
