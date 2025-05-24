@@ -9,7 +9,7 @@ def get_header():
             gap="1rem",
             class_name="navbar-content container",
         ):
-            tgb.text("Dashboard Name", class_name="logo")
+            tgb.text("Dashboard Name", id="logo")
 
             with tgb.layout(columns="auto auto auto auto auto auto", gap="auto"):
                 tgb.button("Hemsida", class_name="nav-button active")
