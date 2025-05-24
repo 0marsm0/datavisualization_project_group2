@@ -1,5 +1,6 @@
 import taipy.gui.builder as tgb
 from frontend.components.header import get_header
+from frontend.components.footer import get_footer
 
 
 with tgb.Page() as home_page:

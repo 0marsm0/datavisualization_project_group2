@@ -1,5 +1,6 @@
 @import "variables.css";
 @import "header.css";
+@import "footer.css";
 @import "layout_primitives.css";
 
 
@@ -16,6 +17,7 @@
 
 .container {
     width: 90%;
+
 }
 
 /* Titles */
@@ -100,4 +102,82 @@ h6 {
     font-size: 1rem;
     line-height: 1.6;
     word-break: break-word;
+}
+
+.tgb-selector select {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+    border: 2px solid var(--font-white);
+    border-radius: 6px;
+    padding: var(--s-1) var(--s0);
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+}
+
+.tgb-selector select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 5px var(--primary);
+}
+
+.tgb-selector select option {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+}
+
+.tgb-selector label {
+    color: var(--font-white);
+    margin-bottom: 4px;
+    display: block;
+    font-weight: 600;
+}
+
+.taipy-selector .MuiSelect-root {
+    background-color: var(--bg-card);
+    color: var(--font-white);
+}
+
+* Основной фон и цвет текста выбранного элемента */ .MuiSelect-select {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+    border: 2px solid var(--font-white) !important;
+    border-radius: 6px;
+    padding: var(--s-1) var(--s0);
+}
+
+/* Белая стрелка (иконка раскрытия) */
+.MuiSelect-icon {
+    color: var(--font-white) !important;
+}
+
+/* Label (подпись поля) */
+.MuiInputLabel-root {
+    color: var(--font-white) !important;
+    z-index: 10;
+}
+
+.MuiInputLabel-root.Mui-focused {
+    color: var(--primary) !important;
+}
+
+/* Фон и цвет выпадающего списка */
+.MuiPaper-root {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+}
+
+/* Цвет текста каждой опции */
+.MuiMenuItem-root {
+    color: var(--font-white) !important;
+}
+
+/* При фокусе — красная рамка */
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--primary) !important;
+}
+
+/* Обычная рамка вне фокуса */
+.MuiOutlinedInput-notchedOutline {
+    border-color: var(--font-white) !important;
 }
