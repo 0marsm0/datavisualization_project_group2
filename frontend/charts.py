@@ -141,8 +141,13 @@ def create_funnel_chart_total(df):
         title="Utbildningsfunnel: Total antal studenter",
     )
     fig.update_layout(
-        plot_bgcolor="white", xaxis_title="Antal personer", yaxis_title="Steg"
+        plot_bgcolor="#1f2f44",
+        xaxis_title="Antal personer",
+        yaxis_title="Steg",
+        font=dict(color="white"),
     )
+    fig.update_xaxes(title_text=None)
+    fig.update_yaxes(title_text=None)
     return fig
 
 
@@ -155,8 +160,17 @@ def create_funnel_chart_gender(df):
         title="Utbildningsfunnel (Kön)",
     )
     fig.update_layout(
-        plot_bgcolor="white", xaxis_title="Antal personer", yaxis_title="Steg"
+        plot_bgcolor="white",
+        xaxis_title="Antal personer",
+        yaxis_title="Steg",
+        font=dict(color="white"),
+        legend=dict(
+            bgcolor="#1f2f44",
+        ),
+        legend_title_text="",
     )
+    fig.update_xaxes(title_text=None)
+    fig.update_yaxes(title_text=None)
     return fig
 
 
@@ -259,7 +273,6 @@ def create_storytelling_chart(df_summary):
             borderwidth=1,
         )
 
-        
     # Konvertera plotly.express-figuren till plotly.graph_objects.Figure
     fig = go.Figure(fig_px)
     return fig

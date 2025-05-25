@@ -11,8 +11,16 @@
     box-sizing: border-box;
 }
 
-.main {
-    background: var(--bg-main);
+.MuiBox-root.css-16fw218 {
+    background-color: var(--bg-main);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
 }
 
 .container {
@@ -50,6 +58,7 @@ h6 {
     margin: 25px 0 0 0;
 }
 
+
 .card-link {
     cursor: pointer;
     padding: 1.5rem;
@@ -80,7 +89,6 @@ h6 {
     max-width: 100%;
     object-fit: contain;
 }
-
 
 
 .card-link:hover {
@@ -134,11 +142,11 @@ h6 {
 }
 
 .taipy-selector .MuiSelect-root {
-    background-color: var(--bg-card);
+    background-color: transparent;
     color: var(--font-white);
 }
 
-* Основной фон и цвет текста выбранного элемента */ .MuiSelect-select {
+* Background and font colors of choosed element */ .MuiSelect-select {
     background-color: var(--bg-card) !important;
     color: var(--font-white) !important;
     border: 2px solid var(--font-white) !important;
@@ -146,38 +154,74 @@ h6 {
     padding: var(--s-1) var(--s0);
 }
 
-/* Белая стрелка (иконка раскрытия) */
+
 .MuiSelect-icon {
     color: var(--font-white) !important;
 }
 
-/* Label (подпись поля) */
+
 .MuiInputLabel-root {
     color: var(--font-white) !important;
-    z-index: 10;
 }
 
 .MuiInputLabel-root.Mui-focused {
     color: var(--primary) !important;
 }
 
-/* Фон и цвет выпадающего списка */
+
 .MuiPaper-root {
     background-color: var(--bg-card) !important;
     color: var(--font-white) !important;
 }
 
-/* Цвет текста каждой опции */
+
 .MuiMenuItem-root {
     color: var(--font-white) !important;
 }
 
-/* При фокусе — красная рамка */
+
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: var(--primary) !important;
 }
 
-/* Обычная рамка вне фокуса */
 .MuiOutlinedInput-notchedOutline {
     border-color: var(--font-white) !important;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 20px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.chart-wrapper {
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-student {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.taipy-chart {
+    background-color: transparent;
+}
+
+.legend {
+    background-color: transparent;
 }

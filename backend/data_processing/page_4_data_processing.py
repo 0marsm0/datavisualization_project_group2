@@ -26,30 +26,6 @@ def load_sheet_with_gender(sheet_df):
     return df
 
 
-"""def load_sheet_with_gender(sheet_df):
-    df = sheet_df.copy()
-    gender_col = []
-
-    for _, row in df.iterrows():
-        utbildningsområde = row["Utbildningsområde"]
-        if utbildningsområde == "Totalt kvinnor":
-            gender = "kvinnor"
-            utbildningsområde = "Totalt"
-        elif utbildningsområde == "Totalt män":
-            gender = "män"
-            utbildningsområde = "Totalt"
-        elif utbildningsområde == "Totalt":
-            gender = "total"
-        else:
-            gender = None
-
-        gender_col.append(gender)
-        row["Utbildningsområde"] = utbildningsområde
-
-    df["gender"] = gender_col
-    return df"""
-
-
 def load_all_sheets():
     global _cached_sheets
     if _cached_sheets is None:
@@ -155,24 +131,3 @@ def get_direction_and_year_options():
     years.sort()
 
     return directions, years
-
-
-"""def get_direction_and_year_options():
-    sheets = load_all_sheets()
-    df_sokande = sheets["sökande"]
-
-    directions = df_sokande["Utbildningsområde"].unique().tolist()
-    if "Totalt" not in directions:
-        directions.append("Totalt")
-    directions = sorted(set(directions))
-
-    years = []
-    for col in df_sokande.columns:
-        if col not in ["Utbildningsområde", "gender"]:
-            try:
-                years.append(int(col))
-            except ValueError:
-                pass
-    years.sort()
-
-    return directions, years"""

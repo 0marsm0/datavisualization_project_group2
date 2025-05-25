@@ -47,7 +47,7 @@ with tgb.Page() as student_page:
                     "##### Dynamisk analys av studentflöde: *sökande → behöriga → antagna → examinerade*.",
                     mode="md",
                 )
-            with tgb.layout("1 1 1 1"):
+            with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
                     tgb.text("##### Sökande", mode="md")
                     tgb.text("#### 12000", mode="md")
@@ -61,16 +61,7 @@ with tgb.Page() as student_page:
                     tgb.text("##### Examinerade", mode="md")
                     tgb.text("#### 3000", mode="md")
             with tgb.part():
-                with tgb.layout(columns="1 1 1"):
-                    with tgb.part():
-                        tgb.selector(
-                            "{direction}",
-                            lov=directions,
-                            dropdown=True,
-                            label="Utbildningsområde",
-                            on_change=update_state,
-                            class_name="tgb-selector",
-                        )
+                with tgb.layout("1fr 1fr 1fr", gap="1rem", class_name="filters"):
                     with tgb.part():
                         tgb.selector(
                             "{year}",
@@ -79,6 +70,16 @@ with tgb.Page() as student_page:
                             label="År",
                             on_change=update_state,
                             class_name="tgb-selector",
+                        )
+                    with tgb.part():
+                        tgb.selector(
+                            "{direction}",
+                            lov=directions,
+                            dropdown=True,
+                            label="Utbildningsområde",
+                            on_change=update_state,
+                            class_name="tgb-selector",
+                            id="study-selector",
                         )
                     with tgb.part():
                         tgb.selector(
@@ -92,8 +93,7 @@ with tgb.Page() as student_page:
                             class_name="tgb-selector",
                         )
 
-            with tgb.part(class_name="card"):
-                tgb.text("## Visualisering", mode="md")
-                tgb.chart(figure="{funnel_fig}")
+            with tgb.part(class_name="card chart-wrapper"):
+                tgb.chart(figure="{funnel_fig}", class_name="taipy-chart")
 
     get_footer()
