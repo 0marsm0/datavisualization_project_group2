@@ -22,6 +22,6 @@ with tgb.Page() as storytelling_page:
                 #with tgb.part(class_name="card"):
                 #    tgb.chart(figure=create_storytelling_chart)
         with tgb.part(class_name="container card"):
-             tgb.image("assets/figures/education_storytelling2.png", class_name="w100", width=1600, height=1000, scale=2)
+             tgb.image("assets/figures/education_storytelling_line.png", class_name="w100", width=1600, height=1000, scale=2)
         with tgb.part(class_name="container card"):
                tgb.chart(figure="{bar_chart}")
