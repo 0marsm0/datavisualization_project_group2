@@ -1,6 +1,4 @@
 import taipy.gui.builder as tgb
-from taipy.gui import Gui
-import plotly.express as px
 import pandas as pd
 from backend.data_processing.page_1_data_processing import course_data_transform, available_money, table_formatter
 from frontend.charts import course_stats, course_school_table, plot_area, plot_map
@@ -41,6 +39,7 @@ with tgb.Page() as course_page:
                     "{year}", 
                     lov=df["År"].unique(), 
                     dropdown=True,
+                    label="År",
                     on_change=update_state
                 )
         with tgb.part(class_name="container"):
