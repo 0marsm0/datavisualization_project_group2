@@ -6,6 +6,8 @@ from backend.data_processing.page_1_data_processing import (
     table_formatter,
 )
 from frontend.charts import course_stats, course_school_table, plot_area, plot_map
+from frontend.components.header import get_header
+from frontend.components.footer import get_footer
 
 
 def update_state(state):
@@ -57,37 +59,54 @@ fig2 = plot_map(year=year)
 tot_rev = round(available_money(year)["tot_rev"].sum() / 1000000000, 3)
 
 with tgb.Page() as course_page:
-    with tgb.part(class_name="container card"):
-        tgb.navbar()
-    with tgb.part(class_name="container card"):
-        tgb.text("# YH Ansökning för kurser {year}", mode="md")
-        tgb.selector(
-            "{year}",
-            lov=df["År"].unique(),
-            dropdown=True,
-            label="År",
-            on_change=update_state,
-        )
+    get_header()
+
+    with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
-            with tgb.layout(columns="1 1 1 1"):
-                with tgb.part():
-                    tgb.text("Sökta kurser")
-                    tgb.text("### {num_courses}", mode="md")
-                with tgb.part():
-                    tgb.text("Beviljade kurser")
-                    tgb.text("### {approved_courses}", mode="md")
-                with tgb.part():
-                    tgb.text("Beviljandegrad")
-                    tgb.text("### {approved_rate} %", mode="md")
-                with tgb.part():
-                    tgb.text("Totalt tillgängligt statsbidrag")
-                    tgb.text("### {tot_rev} md SEK", mode="md")
-        tgb.text("## Topp antal beviljade kurser per skola, {year}", mode="md")
-        tgb.text("Tabellen är sorterad efter beviljade antal kurser totalt")
-        tgb.table("{df_course_display}", page_size=5)
+            tgb.text("# YH Ansökning för kurser {year}", mode="md")
 
-        tgb.text("## Beviljade kurser per utbildningsområde, {year}", mode="md")
-        tgb.chart(figure="{fig}")
+            with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
 
-        tgb.text("## Beviljade kurser per region, {year}", mode="md")
-        tgb.chart(figure="{fig2}")
+                with tgb.part(class_name="card"):
+                    tgb.text("###### Sökta kurser", mode="md", class_name="card-h4")
+                    tgb.text("#### {num_courses}", mode="md")
+                with tgb.part(class_name="card"):
+                    tgb.text("###### Beviljade kurser", mode="md", class_name="card-h4")
+                    tgb.text("#### {approved_courses}", mode="md")
+                with tgb.part(class_name="card"):
+                    tgb.text("###### Beviljandegrad", mode="md", class_name="card-h4")
+                    tgb.text("#### {approved_rate} %", mode="md")
+                with tgb.part(class_name="card"):
+                    tgb.text(
+                        "###### Tillgängligt statsbidrag",
+                        mode="md",
+                        class_name="card-h4",
+                    )
+                    tgb.text("#### {tot_rev} md SEK", mode="md")
+            with tgb.part(class_name="selector-wrapper"):
+                tgb.selector(
+                    "{year}",
+                    lov=df["År"].unique(),
+                    dropdown=True,
+                    label="År",
+                    on_change=update_state,
+                )
+
+            with tgb.part():
+                tgb.text("## Topp antal beviljade kurser per skola, {year}", mode="md")
+                tgb.text(
+                    "*Tabellen är sorterad efter beviljade antal kurser totalt*",
+                    mode="md",
+                )
+                tgb.table("{df_course_display}", page_size=5)
+
+            with tgb.part(class_name="card"):
+                tgb.text(
+                    "### Beviljade kurser per utbildningsområde, {year}", mode="md"
+                )
+                tgb.chart(figure="{fig}")
+            with tgb.part(class_name="card"):
+                tgb.text("### Beviljade kurser per region, {year}", mode="md")
+                tgb.chart(figure="{fig2}")
+
+    get_footer()

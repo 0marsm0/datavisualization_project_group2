@@ -28,6 +28,7 @@ def course_stats(df, **options):
         approved_rate = total_approved / total_count
     return (total_count, total_approved, approved_rate)
 
+
 # table for the course page
 def course_school_table(df, school="", year=2024):
     if school == "":
@@ -63,6 +64,7 @@ def course_school_table(df, school="", year=2024):
         ).df()
         return df
 
+
 # plot the bar chart for area of education
 def plot_area(df, year):
     duckdb.register("df_for_query", df)
@@ -78,7 +80,7 @@ def plot_area(df, year):
 
     custom_colors = {
         "Beviljad": "#084083",  # Color for Approved
-        "Avslag": "#E4ECF6",  # Color for Rejected
+        "Avslag": "#ff5e4d",  # Color for Rejected
     }
 
     fig = px.bar(
@@ -97,12 +99,18 @@ def plot_area(df, year):
         plot_bgcolor="white",
         yaxis=dict(autorange="reversed"),
         xaxis=dict(title="Antal"),
+        font=dict(color="white"),
     )
     return fig
 
 
 # plot the map on course page
 def plot_map(year):
+
+    color_scale = [
+        "#fdd8d3",
+        "#fa4531",
+    ]
     df_map = map_df(year)
     df_map = df_map.rename(columns={"antal_bev": "Antal beviljade", "code": "Länskod"})
     geo_json = geo_file()
@@ -112,7 +120,7 @@ def plot_map(year):
         locations="Länskod",
         featureidkey="properties.ref:se:länskod",
         color="Antal beviljade",
-        color_continuous_scale="blues",
+        color_continuous_scale=color_scale,
         hover_name="name",
     )
 
@@ -121,13 +129,6 @@ def plot_map(year):
         fitbounds="locations", visible=False, projection_type="orthographic"
     )
 
-    return fig
-    fig.update_traces(
-        hovertemplate="""
-            <b>%{hovertext}</b><br>
-            Antal invånare: %{antal_bev}<extra></extra>
-        """
-    )
     return fig
 
 
@@ -170,54 +171,6 @@ def create_funnel_chart_gender(df):
     fig.update_xaxes(title_text=None)
     fig.update_yaxes(title_text=None)
     return fig
-
-
-"""def create_funnel_chart_total(df):
-    fig = go.Figure(
-        go.Funnel(
-            y=df["stage"],
-            x=df["value"],
-            textinfo="value+percent initial",
-            marker_color="#4C78A8",
-        )
-    )
-
-    fig.update_layout(
-        plot_bgcolor="white",
-        xaxis_title="Antal personer",
-        yaxis_title="Steg",
-    )
-    return fig
-
-
-def create_funnel_chart_gender(df):
-    fig = go.Figure()
-    colors = {"Kvinnor": "#EF553B", "Män": "#3B48FD"}
-
-    for office in df["office"].unique():
-        office_df = df[df["office"] == office]
-        x_values = office_df["number"]
-        y_values = office_df["stage"]
-
-        text_positions = ["inside" if x > 2000 else "outside" for x in x_values]
-
-        fig.add_trace(
-            go.Funnel(
-                name=office,
-                y=y_values,
-                x=x_values,
-                textinfo="value+percent initial",
-                textposition=text_positions,
-                marker_color=colors.get(office, "#888"),
-            )
-        )
-
-    fig.update_layout(
-        plot_bgcolor="white",
-        xaxis_title="Antal personer",
-        yaxis_title="Steg",
-    )
-    return fig"""
 
 
 # CHARTS AND STATS FOR STORYTELLING PAGE (storytelling 2)
@@ -275,115 +228,131 @@ def create_storytelling_chart(df_summary):
     fig = go.Figure(fig_px)
     return fig
 
-#Storytelling graf för kurser
+
+# Storytelling graf för kurser
 def plot_area_storytelling(df, year=2024):
-        duckdb.register('df_for_query', df)
-        plot_df = duckdb.query(f"""--sql
+    duckdb.register("df_for_query", df)
+    plot_df = duckdb.query(
+        f"""--sql
             SELECT Utbildningsområde, COUNT(*) as antal, Beslut
             FROM df
             WHERE År = {year}
             GROUP BY Utbildningsområde, Beslut
                         ORDER BY antal DESC
-        """).df()
+        """
+    ).df()
 
-        bar_colors = {
-            'Beviljad': '#084083',
-            'Avslag': '#E4ECF6',
-        }
+    bar_colors = {
+        "Beviljad": "#084083",
+        "Avslag": "#E4ECF6",
+    }
 
-        unique_utbildningsomrade = plot_df['Utbildningsområde'].unique().tolist()
-        tick_vals = list(range(len(unique_utbildningsomrade)))
-        tick_texts = []
-        for category in unique_utbildningsomrade:
-            if category == 'Data/IT':
-                 tick_texts.append(f"<span style='color:black; font-weight: bold; font-size: 1.1em;'>{category}</span>")
-            elif category == 'Samhällsbyggnad och byggteknik':
-                 tick_texts.append(f"<span style='color:black; font-weight: bold; font-size: 1.1em;'>{category}</span>")
-            else:
-                tick_texts.append(f"<span style='color:#a9a9a9'>{category}</span>")
-
-
-        fig = px.bar(plot_df, 
-                     x="antal", 
-                     y="Utbildningsområde", 
-                     color="Beslut", 
-                     color_discrete_map = bar_colors,
-                     orientation='h', 
-                     text_auto=True,
-                     height=800,
-                     title= r"Stor skillnad i beviljandegrad för STIs huvudområden. Data/IT<br>har både mer sökta kurser och majoriteten avslagna")
-        fig.update_layout(
-            showlegend=False, 
-            barmode='group',
-            plot_bgcolor="white",
-            yaxis=dict(
-              autorange="reversed",
-              title="",
-              tickmode='array',
-              tickvals=tick_vals,
-              ticktext=tick_texts
-            ),
-            xaxis=dict(
-                  title=r"<b>ANTAL</b>"),
-            title=dict(font=dict(size=24), x=0.1, y=0.925),
-            margin=dict(l=0,t=150)
+    unique_utbildningsomrade = plot_df["Utbildningsområde"].unique().tolist()
+    tick_vals = list(range(len(unique_utbildningsomrade)))
+    tick_texts = []
+    for category in unique_utbildningsomrade:
+        if category == "Data/IT":
+            tick_texts.append(
+                f"<span style='color:black; font-weight: bold; font-size: 1.1em;'>{category}</span>"
             )
-        
-        fig.add_annotation(
-            text=r"<b>UTBILDNINGSOMRÅDE</b>",
-            yref='paper', xref='paper',
-            x=-0.27, y=1.04,
-            showarrow=False,
-            align='right',
-            font=dict(size=14)
-        )
+        elif category == "Samhällsbyggnad och byggteknik":
+            tick_texts.append(
+                f"<span style='color:black; font-weight: bold; font-size: 1.1em;'>{category}</span>"
+            )
+        else:
+            tick_texts.append(f"<span style='color:#a9a9a9'>{category}</span>")
 
-        fig.add_annotation(
-            text=r"Utbildningsområde med<br><b>hög</b> beviljandegrad",
-            yref='paper', xref='paper',
-            x=0.595, y=0.72, #position
-            showarrow=True,
-            # --- Arrowhead ---
-            ax=30, # X-koordinater var pilen pekar
-            ay=60, # Y-koord
-            axref='pixel', #'ax' som värde på x-axeln
-            ayref='pixel',
-            arrowhead=5,
-            arrowsize=1,
-            arrowwidth=2,
-            arrowcolor='black',
-            standoff=1,
-            startstandoff=1,
-            align='left',
-            font=dict(size=10)
-        )
-        fig.add_annotation(
-            text=r"Utbildningsområde med<br><b>låg</b> beviljandegrad",
-            yref='paper', xref='paper',
-            x=0.7, y=0.89,
-            ax=30, 
-            showarrow=True,
-            ay=60, 
-            axref='pixel',
-            arrowhead=5, 
-            ayref='pixel',
-            arrowsize=1,
-            arrowwidth=2,
-            arrowcolor='black',
-            standoff=1,
-            startstandoff=1,
-            align='left',
-            font=dict(size=10)
-        )
-        fig.add_annotation(
-            text=r"Data från ansökningsomgång myh kurser 2024",
-            yref='paper', xref='paper',
-            x=0.88, y=0.05,
-            showarrow=False,
-            align='left',
-            font=dict(size=12, color='#a9a9a9'))
-        
-        fig.add_layout_image(
+    fig = px.bar(
+        plot_df,
+        x="antal",
+        y="Utbildningsområde",
+        color="Beslut",
+        color_discrete_map=bar_colors,
+        orientation="h",
+        text_auto=True,
+        height=800,
+        title=r"Stor skillnad i beviljandegrad för STIs huvudområden. Data/IT<br>har både mer sökta kurser och majoriteten avslagna",
+    )
+    fig.update_layout(
+        showlegend=False,
+        barmode="group",
+        plot_bgcolor="white",
+        yaxis=dict(
+            autorange="reversed",
+            title="",
+            tickmode="array",
+            tickvals=tick_vals,
+            ticktext=tick_texts,
+        ),
+        xaxis=dict(title=r"<b>ANTAL</b>"),
+        title=dict(font=dict(size=24), x=0.1, y=0.925),
+        margin=dict(l=0, t=150),
+    )
+
+    fig.add_annotation(
+        text=r"<b>UTBILDNINGSOMRÅDE</b>",
+        yref="paper",
+        xref="paper",
+        x=-0.27,
+        y=1.04,
+        showarrow=False,
+        align="right",
+        font=dict(size=14),
+    )
+
+    fig.add_annotation(
+        text=r"Utbildningsområde med<br><b>hög</b> beviljandegrad",
+        yref="paper",
+        xref="paper",
+        x=0.595,
+        y=0.72,  # position
+        showarrow=True,
+        # --- Arrowhead ---
+        ax=30,  # X-koordinater var pilen pekar
+        ay=60,  # Y-koord
+        axref="pixel",  #'ax' som värde på x-axeln
+        ayref="pixel",
+        arrowhead=5,
+        arrowsize=1,
+        arrowwidth=2,
+        arrowcolor="black",
+        standoff=1,
+        startstandoff=1,
+        align="left",
+        font=dict(size=10),
+    )
+    fig.add_annotation(
+        text=r"Utbildningsområde med<br><b>låg</b> beviljandegrad",
+        yref="paper",
+        xref="paper",
+        x=0.7,
+        y=0.89,
+        ax=30,
+        showarrow=True,
+        ay=60,
+        axref="pixel",
+        arrowhead=5,
+        ayref="pixel",
+        arrowsize=1,
+        arrowwidth=2,
+        arrowcolor="black",
+        standoff=1,
+        startstandoff=1,
+        align="left",
+        font=dict(size=10),
+    )
+    fig.add_annotation(
+        text=r"Data från ansökningsomgång myh kurser 2024",
+        yref="paper",
+        xref="paper",
+        x=0.88,
+        y=0.05,
+        showarrow=False,
+        align="left",
+        font=dict(size=12, color="#a9a9a9"),
+    )
+
+    fig.add_layout_image(
         dict(
             source="download.jpeg",
             xref="paper",
@@ -392,11 +361,12 @@ def plot_area_storytelling(df, year=2024):
             y=0.03,
             sizex=0.15,
             sizey=0.15,
-            )
         )
-        return fig
+    )
+    return fig
 
-#Page 2
+
+# Page 2
 def create_educational_area_bar(df, selected_area, num_years=5):
     # Filtrera de senaste num_years åren
     recent_years = sorted(df["År"].unique())[-num_years:]
@@ -422,7 +392,7 @@ def create_educational_area_bar(df, selected_area, num_years=5):
                 name=area,
                 line=dict(
                     width=4 if area == selected_area else 1.5,
-                    color="#0077b6" if area == selected_area else "#cccccc"
+                    color="#0077b6" if area == selected_area else "#cccccc",
                 ),
                 marker=dict(size=6 if area == selected_area else 4),
                 opacity=1.0 if area == selected_area else 0.4,
@@ -432,8 +402,12 @@ def create_educational_area_bar(df, selected_area, num_years=5):
 
     fig.update_layout(
         title=None,
-        xaxis=dict(title="År", tickangle=0, title_font=dict(size=14), tickfont=dict(size=12)),
-        yaxis=dict(title="Antal studerande", title_font=dict(size=14), tickfont=dict(size=12)),
+        xaxis=dict(
+            title="År", tickangle=0, title_font=dict(size=14), tickfont=dict(size=12)
+        ),
+        yaxis=dict(
+            title="Antal studerande", title_font=dict(size=14), tickfont=dict(size=12)
+        ),
         plot_bgcolor="#ffffff",
         paper_bgcolor="#ffffff",
         font=dict(family="Arial", size=14),

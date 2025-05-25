@@ -49,18 +49,18 @@ with tgb.Page() as student_page:
                 )
             with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
-                    tgb.text("##### Sökande", mode="md")
+                    tgb.text("###### Sökande", mode="md", class_name="card-h4")
                     tgb.text("#### 12000", mode="md")
                 with tgb.part(class_name="card"):
-                    tgb.text("##### Behöriga", mode="md")
+                    tgb.text("###### Behöriga", mode="md", class_name="card-h4")
                     tgb.text("#### 9000", mode="md")
                 with tgb.part(class_name="card"):
-                    tgb.text("##### Antagna", mode="md")
+                    tgb.text("###### Antagna", mode="md", class_name="card-h4")
                     tgb.text("#### 6000", mode="md")
                 with tgb.part(class_name="card"):
-                    tgb.text("##### Examinerade", mode="md")
+                    tgb.text("###### Examinerade", mode="md", class_name="card-h4")
                     tgb.text("#### 3000", mode="md")
-            with tgb.part():
+            with tgb.part(class_name="selector-wrapper"):
                 with tgb.layout("1fr 1fr 1fr", gap="1rem", class_name="filters"):
                     with tgb.part():
                         tgb.selector(

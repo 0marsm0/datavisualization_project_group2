@@ -18,12 +18,12 @@ from frontend.pages.storytelling import storytelling_page
 
 
 pages = {
-    "Start": home_page,
-    "Kurser": course_page,
-    "Trender": page2_page,
-    "Skolor": page_3,
-    "Studenter": student_page,
-    "Storytelling": storytelling_page,
+    "home": home_page,
+    "courses": course_page,
+    "education": page2_page,
+    "schools": page_3,
+    "students": student_page,
+    "storytelling": storytelling_page,
 }
 
 
