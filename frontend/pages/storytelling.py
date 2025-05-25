@@ -1,7 +1,6 @@
 import taipy.gui.builder as tgb
 from backend.data_processing.page_2_data_processing import load_and_process_page2_data
-from frontend.charts import create_storytelling_chart
-from explorations.john.temp_graph import plot_area_storytelling
+from frontend.charts import create_storytelling_chart, plot_area_storytelling
 from backend.data_processing.page_1_data_processing import course_data_transform
 
 
@@ -18,8 +17,8 @@ with tgb.Page() as storytelling_page:
         with tgb.part(class_name="container card"):
                 tgb.navbar()
         with tgb.part(class_name="container card"):
-                tgb.text("# STIs framtid", mode="md")
-                tgb.text("### Den här sidan visar STIs fokusområden och var fokus bör ligga i framtiden", mode="md")
+                tgb.text("# Stockholms Tekniska Institut", mode="md")
+                tgb.text("### Fokusområden och dess framtid", mode="md")
                 #with tgb.part(class_name="card"):
                 #    tgb.chart(figure=create_storytelling_chart)
         with tgb.part(class_name="container card"):

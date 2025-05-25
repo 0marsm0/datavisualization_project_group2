@@ -1,6 +1,7 @@
 import taipy.gui.builder as tgb
-from utils.charts import create_educational_area_bar
+from frontend.charts import create_educational_area_bar
 import pandas as pd
+from backend.data_processing.page_2_data_processing import load_and_process_page2_data
 
 def page_2(df_long, raw_data_table):
     # Initiera default state
@@ -60,14 +61,15 @@ def page_2(df_long, raw_data_table):
             )
 
             # Statkort
-            with tgb.layout(columns="1 1", gap="1rem"):
-                with tgb.part():
-                    tgb.text("Totalt antal studerande de senaste {actual_years} åren", mode="md")
-                    tgb.text("## {total_students}", mode="md")
+            with tgb.part(class_name="card center"):
+                with tgb.layout(columns="1 1", gap="1rem"):
+                    with tgb.part():
+                        tgb.text("Totalt antal studerande de senaste {actual_years} åren", mode="md")
+                        tgb.text("## {total_students}", mode="md")
 
-                with tgb.part():
-                    tgb.text("Medelvärdet av studenter per år", mode="md")
-                    tgb.text("## {average_students}", mode="md")
+                    with tgb.part():
+                        tgb.text("Medelvärdet av studenter per år", mode="md")
+                        tgb.text("## {average_students}", mode="md")
 
                 #with tgb.part(class_name="card center"):
                     #tgb.text("### Antal år", mode="md")
@@ -81,7 +83,9 @@ def page_2(df_long, raw_data_table):
 
                 with tgb.part(class_name="card left-margin-md"):
                     tgb.text("## Filtrera data", mode="md")
+                    tgb.text("Antal år")
                     tgb.slider("{number_of_years}", min=1, max=20, step=1, continuous=False)
+                    tgb.text("Välj utbildningsområde")
                     tgb.selector(
                         "{selected_educational_area}",
                         lov=df_long["Utbildningsinriktning"].dropna().unique(),
@@ -99,3 +103,9 @@ def page_2(df_long, raw_data_table):
         "average_students": average_students,
         "actual_years": actual_years
     }
+
+# Ladda data globalt
+df_long, raw_data_table = load_and_process_page2_data()
+
+# Anropa funktionen för att få sidan och initial state
+page2_page, page2_state = page_2(df_long, raw_data_table)
