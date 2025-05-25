@@ -215,7 +215,11 @@ def page_2(df_long, raw_data_table):
                     # Filters card
                     with tgb.part(class_name="card filters-card"):
                         with tgb.part(class_name="filter-group"):
-                            tgb.text("Antal år:", mode="md")
+                            tgb.text(
+                                "Antal år att visa:",
+                                mode="md",
+                                class_name="filter-label",
+                            )
                             tgb.slider(
                                 "{number_of_years}",
                                 min=1,
@@ -227,11 +231,11 @@ def page_2(df_long, raw_data_table):
                             )
 
                         with tgb.part(class_name="filter-group"):
-                            tgb.text("Utbildningsområde:", mode="md")
                             tgb.selector(
                                 "{selected_educational_area}",
                                 lov=df_long["Utbildningsinriktning"].dropna().unique(),
                                 dropdown=True,
+                                label="Välj utbildningsområde:",
                                 class_name="tgb-selector",
                                 on_change=on_filter_change,
                             )
