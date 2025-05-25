@@ -59,6 +59,7 @@ h6 {
     color: var(--font-white);
     margin: 25px 0 0 0;
     padding: 15px;
+    text-align: center;
 }
 
 .card-wrapper {
@@ -256,7 +257,7 @@ h6 {
 
 .MuiTableCell-head {
     font-weight: bold;
-    color: var(--primary) !important;
+    color: blue !important;
     border-bottom: 2px solid var(--primary) !important;
 }
 
@@ -301,3 +302,30 @@ h6 {
 
 
 /* ===== Page 1 Chart Style ===== */
+.layer rect {
+    fill-opacity: 0 !important;
+}
+
+text.ycbcoloraxistitle {
+    fill: var(--font-white) !important;
+}
+
+g.ycbcoloraxistick text {
+    fill: var(--font-white) !important;
+}
+
+
+/* ===== Page 2 Chart Style ===== */
+.ytitle {
+    fill: var(--font-white) !important;
+}
+
+.xtitle {
+    fill: var(--font-white) !important;
+}
+g.yaxislayer-above text {
+    fill: var(--font-white) !important;
+}
+g.xaxislayer-above text {
+    fill: var(--font-white) !important;
+}

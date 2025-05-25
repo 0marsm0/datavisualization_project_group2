@@ -21,19 +21,17 @@ def update_state(state):
     state.tot_rev = round(available_money(state.year)["tot_rev"].sum() / 1000000000, 3)
     state.df_course = course_school_table(df, school="", year=state.year)
     state.df_money = table_formatter(state.year).rename(
-        columns={"tot_rev": "Beviljat statsbidrag"}
+        columns={"tot_rev": "Beviljat statsbidrag (SEK)"}
     )
     state.df_course_display = pd.merge(
         state.df_course, state.df_money, on="Skola", how="left"
-    )[
-        [
+    )[[
             "Skola",
             "Antal kurser",
             "Beviljade kurser",
             "Beviljandegrad",
             "Beviljat statsbidrag (SEK)",
-        ]
-    ]
+        ]]
 
 
 year = 2024

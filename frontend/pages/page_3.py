@@ -95,35 +95,35 @@ with tgb.Page() as page_3:
 
             with tgb.layout("1fr 1fr 1fr", gap="1.5rem", class_name="summary-cards"):
                 with tgb.part(class_name="card card-student"):
-                    tgb.text("###### Sökta kurser", mode="md", class_name="card-h4")
+                    tgb.text("###### Sökta utbildningar", mode="md", class_name="card-h4")
                     tgb.text("#### {antal_ansökningar}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
-                    tgb.text("###### Beviljade kurser", mode="md", class_name="card-h4")
+                    tgb.text("###### Beviljade utbildningar", mode="md", class_name="card-h4")
                     tgb.text("#### {antal_beviljade}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
                     tgb.text("###### Beviljandegrad", mode="md", class_name="card-h4")
                     tgb.text("#### {beviljandegrad} %", mode="md")
 
-            with tgb.part(class_name="selector-wrapper"):
-                tgb.selector(
-                    "{year}",
-                    lov=alla_år,
-                    dropdown=True,
-                    label="År",
-                    on_change=on_year_change,
-                    class_name="tgb-selector",
-                )
+            # with tgb.part(class_name="selector-wrapper"):
+            #     tgb.selector(
+            #         "{year}",
+            #         lov=alla_år,
+            #         dropdown=True,
+            #         label="År",
+            #         on_change=on_year_change,
+            #         class_name="tgb-selector",
+            #     )
 
             with tgb.part(class_name="card chart-wrapper"):
-                tgb.text("## Topp 15 skolor efter antal utbildningar", mode="md")
+                tgb.text("## Topp 15 skolor efter antal sökta utbildningar, 2024", mode="md")
                 tgb.chart(figure="{skol_fig}", class_name="taipy-chart")
 
             with tgb.part(class_name="card"):
-                tgb.text("## Kursstatistik per skola", mode="md")
+                tgb.text("## Sökta utbildningar per skola", mode="md")
                 tgb.text(
-                    "*Tabellen är sorterad efter beviljade antal kurser totalt*",
+                    "*Tabellen är sorterad efter beviljade antal utbildningar totalt*",
                     mode="md",
                 )
                 tgb.table(data="{skol_tabell}", page_size=10, class_name="taipy-table")
