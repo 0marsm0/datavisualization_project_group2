@@ -1,0 +1,303 @@
+@import "variables.css";
+@import "header.css";
+@import "footer.css";
+@import "layout_primitives.css";
+
+
+
+#root {
+    margin: 0 !important;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.MuiBox-root.css-16fw218 {
+    background-color: var(--bg-main);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+}
+
+.container {
+    width: 90%;
+
+}
+
+/* Titles */
+h1,
+h2,
+h3 {
+    color: var(--primary);
+    font-weight: 600;
+    text-align: center;
+    margin: 30px;
+}
+
+h4,
+h5,
+h6 {
+    color: var(--primary);
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+}
+
+.card-h4 {
+    color: var(--font-white) !important;
+    font-weight: 300;
+    text-align: center;
+    margin: 10px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    color: var(--font-white);
+    margin: 25px 0 0 0;
+    padding: 15px;
+}
+
+.card-wrapper {
+    margin: 25px 0 0 0;
+}
+
+
+.card-link {
+    cursor: pointer;
+    padding: 1.5rem;
+    background-color: var(--bg-card);
+    color: var(--font-white);
+    border-radius: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.img-wrapper {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.taipy-img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+
+.card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.text-wrapper {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    padding: 0 1rem;
+    text-align: justify;
+}
+
+.taipy-text {
+    color: var(--font-white);
+    font-family: Lato, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.tgb-selector select {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+    border: 2px solid var(--font-white);
+    border-radius: 6px;
+    padding: var(--s-1) var(--s0);
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+}
+
+.tgb-selector select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 5px var(--primary);
+}
+
+.tgb-selector select option {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+}
+
+.tgb-selector label {
+    color: var(--font-white);
+    margin-bottom: 4px;
+    display: block;
+    font-weight: 600;
+}
+
+.taipy-selector .MuiSelect-root {
+    background-color: transparent;
+    color: var(--font-white);
+}
+
+* Background and font colors of choosed element */ .MuiSelect-select {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+    border: 2px solid var(--font-white) !important;
+    border-radius: 6px;
+    padding: var(--s-1) var(--s0);
+}
+
+
+.MuiSelect-icon {
+    color: var(--font-white) !important;
+}
+
+
+.MuiInputLabel-root {
+    color: var(--font-white) !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+    color: var(--primary) !important;
+}
+
+
+.MuiPaper-root {
+    background-color: var(--bg-card) !important;
+    color: var(--font-white) !important;
+}
+
+
+.MuiMenuItem-root {
+    color: var(--font-white) !important;
+}
+
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--primary) !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+    border-color: var(--font-white) !important;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 20px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.chart-wrapper {
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-student {
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.taipy-chart {
+    background-color: transparent;
+}
+
+.legend {
+    background-color: transparent;
+}
+
+.selector-wrapper {
+    margin: 40px 0;
+}
+
+
+/* ===== Custom Table Style ===== */
+.MuiTable-root {
+    background-color: transparent !important;
+    color: var(--font-white) !important;
+}
+
+.MuiTableCell-root {
+    background-color: transparent !important;
+    color: var(--font-white) !important;
+    border: 1px solid var(--font-white) !important;
+}
+
+.MuiTableHead-root {
+    background-color: var(--bg-main) !important;
+}
+
+.MuiTableCell-head {
+    font-weight: bold;
+    color: var(--primary) !important;
+    border-bottom: 2px solid var(--primary) !important;
+}
+
+.MuiTableRow-root:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    cursor: pointer;
+}
+
+.MuiTablePagination-root {
+    color: var(--font-white) !important;
+}
+
+.MuiSvgIcon-root {
+    color: var(--font-white) !important;
+}
+
+.MuiTableSortLabel-icon {
+    color: var(--font-white) !important;
+    opacity: 1 !important;
+}
+
+.MuiTableSortLabel-root:hover .MuiTableSortLabel-icon {
+    color: var(--primary) !important;
+}
+
+.Mui-active .MuiTableSortLabel-icon {
+    color: var(--primary) !important;
+}
+
+.MuiTableSortLabel-root {
+    color: var(--font-white) !important;
+    font-weight: 900 !important;
+}
+
+.MuiTableSortLabel-root:hover {
+    color: var(--primary) !important;
+}
+
+.Mui-active.MuiTableSortLabel-root {
+    color: var(--primary) !important;
+}
+
+
+/* ===== Page 1 Chart Style ===== */

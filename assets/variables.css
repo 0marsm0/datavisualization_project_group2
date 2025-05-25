@@ -1,0 +1,10 @@
+:root {
+    --primary: #ff5e4d;
+    --bg-main: #152335;
+    --bg-card: #1f2f44;
+    --font-white: #f7fafc;
+
+    --s-1: 8px;
+    --s0: 16px;
+    --s1: 32px;
+}
