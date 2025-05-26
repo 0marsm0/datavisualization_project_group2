@@ -77,12 +77,12 @@ def page_2(df_long, raw_data_table):
                 ):
                     # Stats card 1
                     with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Totalt antal", mode="md", class_name="card-h4")
+                        tgb.text("###### Totalt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
                         tgb.text("#### {total_students}", mode="md")
 
                     # Stats card 2
                     with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Medel per år", mode="md", class_name="card-h4")
+                        tgb.text("###### Genomsnittligt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
                         tgb.text("#### {average_students}", mode="md")
 
                     # Filters card
