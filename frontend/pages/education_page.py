@@ -1,7 +1,7 @@
 import taipy.gui.builder as tgb
 import pandas as pd
 from frontend.charts import create_educational_area_bar
-from backend.data_processing.page_2_data_processing import load_and_process_page2_data
+from backend.data_processing.education_page_data_processing import load_and_process_page2_data
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
 

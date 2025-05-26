@@ -1,7 +1,7 @@
 import duckdb
 import plotly.express as px
 import plotly.graph_objects as go
-from backend.data_processing.page_1_data_processing import map_df, geo_file
+from backend.data_processing.course_page_data_processing import map_df, geo_file
 
 
 # CHARTS AND STATS FOR THE COURSE PAGE (PAGE 1)

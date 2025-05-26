@@ -1,6 +1,6 @@
 import taipy.gui.builder as tgb
 import pandas as pd
-from backend.data_processing.page_1_data_processing import (
+from backend.data_processing.course_page_data_processing import (
     course_data_transform,
     available_money,
     table_formatter,

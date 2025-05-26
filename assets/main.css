@@ -336,3 +336,12 @@ g.xaxislayer-above text {
     background-color: var(--primary);
     color: var(--font-white);
 }
+
+.css-72sony {
+    color: var(--font-white) !important;   
+}
+
+.css-72sony:hover {
+    transform: translateY(-5px);
+    color: red;
+}
