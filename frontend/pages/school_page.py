@@ -1,7 +1,7 @@
 import taipy.gui.builder as tgb
 import pandas as pd
 import plotly.express as px
-from backend.data_processing.page_3_data_processing import load_school_data
+from backend.data_processing.school_page_data_processing import load_school_data
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
 
@@ -91,7 +91,7 @@ with tgb.Page() as page_3:
 
     with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
-            tgb.text("# Statistik per skola {year}", mode="md")
+            tgb.text("# Statistik per skola, 2024", mode="md")
 
             with tgb.layout("1fr 1fr 1fr", gap="1.5rem", class_name="summary-cards"):
                 with tgb.part(class_name="card card-student"):

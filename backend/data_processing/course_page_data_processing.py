@@ -52,7 +52,7 @@ def approved_courses():
         FROM
             df
         WHERE
-            "Antal kommuner" <= 1 AND Beslut = 'Beviljad'
+            "Antal kommuner" <= 1 AND 'Län' != 'Se "Lista flera kommuner"'
         GROUP BY
             län, År) AS actual_counts
     ON
@@ -60,6 +60,15 @@ def approved_courses():
     ORDER BY
         antal_bev DESC, all_combs.År;
     """).df()
+    
+    #fixing Dalarna bug
+    new_rows_df = pd.DataFrame([
+    ['Dalarna', 2022, 0],
+    ['Dalarna', 2023, 0]
+    ], columns=approved_courses.columns)
+
+    approved_courses = pd.concat([approved_courses, new_rows_df], ignore_index=True)
+    
     return approved_courses
 
 def geo_file():
@@ -80,14 +89,15 @@ def regions_df():
         regions_list.append(region_data)
 
     df_regions = pd.DataFrame(regions_list)
-    df_regions["name"] = df_regions["name"]
 
     name_mapping = {}
     appr_course = approved_courses()
     for name in df_regions['name']:
         best_match = get_close_matches(name, appr_course["Län"], n=1)
-        if name == "Gotlands län":
-            best_match = ["Gotland"]
+        # if name == "Gotlands län":
+        #     best_match = ["Gotland"]
+        # elif name == "Dalarnas län":
+        #     best_match = ["Dalarna"]
         if best_match:
             name_mapping[name] = best_match[0]
         df_regions['matched_name'] = df_regions['name'].map(name_mapping)
@@ -109,7 +119,7 @@ def map_df(year = 2022):
     map_df["antal_bev"] = map_df["antal_bev"].astype(int)
 
     return map_df
-
+#print(map_df())
 def scrape_revenue():
     revenue_df = pd.read_html("https://www.myh.se/yrkeshogskolan/ansok-om-att-bedriva-utbildning/ansokan-kurser/statsbidrag-och-schablonnivaer", encoding='utf-8')[0]
     revenue_df["Med momskompensation"]=revenue_df["Med momskompensation"].str.replace(" ", "").astype(int)
@@ -122,17 +132,17 @@ def available_money(year):
     df_money=scrape_revenue()
     rev_df = duckdb.query("""--sql
             WITH CTE as (
-            SELECT skola, f.Utbildningsområde, År, SUM("Antal beviljade platser") as bev_platser, m."Med momskompensation" as komp
+            SELECT skola, f.Utbildningsområde, År, "YH-poäng"/200 as del_av_år, SUM("Antal beviljade platser") as bev_platser, m."Med momskompensation" as komp
              FROM df as f
                LEFT JOIN df_money as m
                    ON f.Utbildningsområde = m.Utbildningsområde
                    where beslut = 'Beviljad'
-                   group by skola, f.Utbildningsområde, "År", m."Med momskompensation"
-                      )
-               SELECT skola, År, SUM(bev_platser*komp) as tot_rev
-                 FROM CTE
-                   GROUP BY skola, "År"
-                   ORDER BY tot_rev DESC
+                   group by skola, f.Utbildningsområde, "År", m."Med momskompensation", del_av_år
+                       )
+                SELECT skola, År, SUM(del_av_år*bev_platser*komp) as tot_rev
+                  FROM CTE
+                    GROUP BY skola, "År"
+                    ORDER BY tot_rev DESC
     """).df()
     rev_df = rev_df.rename(columns={"skola":"Skola"})
     rev_df = rev_df.query(f'År=={year}')

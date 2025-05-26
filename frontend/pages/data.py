@@ -1,5 +1,5 @@
 import taipy.gui.builder as tgb
-from backend.data_processing.page_1_data_processing import course_data_transform
+from backend.data_processing.course_page_data_processing import course_data_transform
 
 course_df = course_data_transform()
 

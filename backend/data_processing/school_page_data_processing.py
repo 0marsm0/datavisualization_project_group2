@@ -21,4 +21,4 @@ def load_school_data():
 
     # Endast nödvändiga kolumner
     return df[["Anordnare", "Utbildning", "Status", "År"]].dropna()
-print(load_school_data().columns)
+#print(load_school_data().columns)
