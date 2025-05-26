@@ -416,4 +416,17 @@ def create_educational_area_bar(df, selected_area, num_years=5):
         showlegend=False,
     )
 
+    fig.update_xaxes(
+        showgrid=True,          # Ensure grid lines are shown
+        gridcolor="#152335",        # Set the color of the major grid lines
+        griddash="dot"          # Optional: Change grid line style (e.g., "solid", "dash", "dot")
+    )
+
+    # For the Y-axis (horizontal grid lines)
+    fig.update_yaxes(
+        showgrid=True,          # Ensure grid lines are shown
+        gridcolor="#152335",      # Set the color of the major grid lines
+        griddash="dot"         # Optional: Change grid line style
+    )   
+
     return fig
