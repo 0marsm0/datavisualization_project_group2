@@ -1,26 +1,10 @@
 import taipy.gui.builder as tgb
 
-"""def get_header():
-    with tgb.part(class_name="header sticky"):
-        with tgb.layout(
-            columns="auto auto 1 auto",
-            align="center",
-            gap="1rem",
-            class_name="navbar-content container",
-        ):
-            tgb.text("Dashboard Name", id="logo")
 
-            with tgb.layout(columns="auto auto auto auto auto auto", gap="auto"):
-                tgb.button("Hemsida", class_name="nav-button active")
-                tgb.button("Kurser", class_name="nav-button")
-                tgb.button("Utbildning", class_name="nav-button")
-                tgb.button("Skolor", class_name="nav-button")
-                tgb.button("Studenter", class_name="nav-button")
-                tgb.button("Storytelling", class_name="nav-button")
-    return tgb.part()"""
+def get_header(current_page):
+    def is_active(page):
+        return "nav-button active" if page == current_page else "nav-button"
 
-
-def get_header():
     with tgb.part(class_name="header sticky"):
         with tgb.layout(
             columns="auto auto 1 auto",
@@ -30,10 +14,18 @@ def get_header():
         ):
             tgb.text("📊 YH DASHBOARD", id="logo")
             with tgb.layout(columns="auto auto auto auto auto auto", gap="auto"):
-                tgb.button("Hemsida", class_name="nav-button active", url="/hem")
-                tgb.button("Kurser", class_name="nav-button", url="/kurser")
-                tgb.button("Utbildning", class_name="nav-button", url="/utbildning")
-                tgb.button("Skolor", class_name="nav-button", url="/skolor")
-                tgb.button("Studenter", class_name="nav-button", url="/studenter")
-                tgb.button("Storytelling", class_name="nav-button", url="/storytelling")
+                tgb.button("Hemsida", class_name=is_active("hem"), url="/hem")
+                tgb.button("Kurser", class_name=is_active("kurser"), url="/kurser")
+                tgb.button(
+                    "Utbildning", class_name=is_active("utbildning"), url="/utbildning"
+                )
+                tgb.button("Skolor", class_name=is_active("skolor"), url="/skolor")
+                tgb.button(
+                    "Studenter", class_name=is_active("studenter"), url="/studenter"
+                )
+                tgb.button(
+                    "Storytelling",
+                    class_name=is_active("storytelling"),
+                    url="/storytelling",
+                )
     return tgb.part()

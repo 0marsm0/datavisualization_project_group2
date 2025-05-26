@@ -9,25 +9,34 @@ from frontend.components.header import get_header
 df_long, _ = load_and_process_page2_data()
 
 # Grupp och summering enligt tidigare
-df_summary = df_long.groupby("Utbildningsinriktning", as_index=False)["Antal studerande"].sum()
+df_summary = df_long.groupby("Utbildningsinriktning", as_index=False)[
+    "Antal studerande"
+].sum()
 
 fig = create_storytelling_chart(df_summary)
 bar_chart = plot_area_storytelling(course_data_transform(), 2024)
 
 
-
-    
-
 with tgb.Page() as storytelling_page:
-        get_header()
-        with tgb.part(class_name="main"):
-                #tgb.navbar()
-                with tgb.part(class_name="container"):
-                        tgb.text("# Stockholms Tekniska Institut", mode="md")
-                        tgb.text("### Fokusområden och dess framtid", mode="md")
-        
-                with tgb.part(class_name="card"):
-                        tgb.image("assets/figures/education_storytelling_line.png", width=1600, height=1000, scale=2)
-        
-                with tgb.part(class_name="card"):
-                        tgb.image("assets/figures/storytelling_course.png", width=1400, height=1000, scale=2)
+    get_header("storytelling")
+    with tgb.part(class_name="main"):
+        # tgb.navbar()
+        with tgb.part(class_name="container"):
+            tgb.text("# Stockholms Tekniska Institut", mode="md")
+            tgb.text("### Fokusområden och dess framtid", mode="md")
+
+        with tgb.part(class_name="card"):
+            tgb.image(
+                "assets/figures/education_storytelling_line.png",
+                width=1600,
+                height=1000,
+                scale=2,
+            )
+
+        with tgb.part(class_name="card"):
+            tgb.image(
+                "assets/figures/storytelling_course.png",
+                width=1400,
+                height=1000,
+                scale=2,
+            )

@@ -87,7 +87,7 @@ def on_year_change(state):
 
 # Page
 with tgb.Page() as page_3:
-    get_header()
+    get_header("skolor")
 
     with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
@@ -95,11 +95,15 @@ with tgb.Page() as page_3:
 
             with tgb.layout("1fr 1fr 1fr", gap="1.5rem", class_name="summary-cards"):
                 with tgb.part(class_name="card card-student"):
-                    tgb.text("###### Sökta utbildningar", mode="md", class_name="card-h4")
+                    tgb.text(
+                        "###### Sökta utbildningar", mode="md", class_name="card-h4"
+                    )
                     tgb.text("#### {antal_ansökningar}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
-                    tgb.text("###### Beviljade utbildningar", mode="md", class_name="card-h4")
+                    tgb.text(
+                        "###### Beviljade utbildningar", mode="md", class_name="card-h4"
+                    )
                     tgb.text("#### {antal_beviljade}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
@@ -117,7 +121,9 @@ with tgb.Page() as page_3:
             #     )
 
             with tgb.part(class_name="card chart-wrapper"):
-                tgb.text("## Topp 15 skolor efter antal sökta utbildningar, 2024", mode="md")
+                tgb.text(
+                    "## Topp 15 skolor efter antal sökta utbildningar, 2024", mode="md"
+                )
                 tgb.chart(figure="{skol_fig}", class_name="taipy-chart")
 
             with tgb.part(class_name="card"):

@@ -5,7 +5,7 @@ from frontend.components.footer import get_footer
 
 with tgb.Page() as home_page:
 
-    get_header()
+    get_header("hem")
 
     with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
