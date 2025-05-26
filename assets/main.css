@@ -323,9 +323,16 @@ g.ycbcoloraxistick text {
 .xtitle {
     fill: var(--font-white) !important;
 }
+
 g.yaxislayer-above text {
     fill: var(--font-white) !important;
 }
+
 g.xaxislayer-above text {
     fill: var(--font-white) !important;
+}
+
+.nav-button.active {
+    background-color: var(--primary);
+    color: var(--font-white);
 }

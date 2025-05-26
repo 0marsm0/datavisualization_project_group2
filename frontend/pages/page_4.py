@@ -37,7 +37,7 @@ def update_state(state):
 
 with tgb.Page() as student_page:
 
-    get_header()
+    get_header("studenter")
 
     with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
