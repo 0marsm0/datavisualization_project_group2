@@ -119,6 +119,9 @@ def page_2(df_long, raw_data_table):
                     tgb.chart(
                         figure="{educational_area_chart}", class_name="taipy-chart"
                     )
+                #with tgb.part(class_name="container"):
+                    #tgb.text("## Rådata från Statistiska centralbyrån SCB som visar antal studerande i olika utbildningsområden genom åren", mode="md")
+                    #tgb.table(data="{raw_data_table}", page_size=10)
 
         get_footer()
 
