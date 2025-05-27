@@ -26,5 +26,5 @@ pages = {
 }
 
 Gui(pages=pages, css_file="assets/main.css").run(
-    dark_mode=False, use_reloader=True, port="8080"
+    dark_mode=False, use_reloader=True, port="auto"
 )

@@ -27,7 +27,7 @@ with tgb.Page() as storytelling_page:
 
         with tgb.part(class_name="card"):
             tgb.image(
-                "assets/figures/education_storytelling_line.png",
+                "assets/figures/storytelling_education.png",
                 width=1600,
                 height=1000,
                 scale=2,
