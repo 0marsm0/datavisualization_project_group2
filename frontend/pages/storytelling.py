@@ -1,7 +1,7 @@
 import taipy.gui.builder as tgb
-from backend.data_processing.page_2_data_processing import load_and_process_page2_data
+from backend.data_processing.education_page_data_processing import load_and_process_page2_data
 from frontend.charts import create_storytelling_chart, plot_area_storytelling
-from backend.data_processing.page_1_data_processing import course_data_transform
+from backend.data_processing.course_page_data_processing import course_data_transform
 from frontend.components.header import get_header
 
 
@@ -27,7 +27,7 @@ with tgb.Page() as storytelling_page:
 
         with tgb.part(class_name="card"):
             tgb.image(
-                "assets/figures/education_storytelling_line.png",
+                "assets/figures/storytelling_education.png",
                 width=1600,
                 height=1000,
                 scale=2,

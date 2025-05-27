@@ -1,7 +1,7 @@
 import taipy.gui.builder as tgb
 import pandas as pd
 from frontend.charts import create_educational_area_bar
-from backend.data_processing.page_2_data_processing import load_and_process_page2_data
+from backend.data_processing.education_page_data_processing import load_and_process_page2_data
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
 
@@ -77,12 +77,12 @@ def page_2(df_long, raw_data_table):
                 ):
                     # Stats card 1
                     with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Totalt antal", mode="md", class_name="card-h4")
+                        tgb.text("###### Totalt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
                         tgb.text("#### {total_students}", mode="md")
 
                     # Stats card 2
                     with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Medel per år", mode="md", class_name="card-h4")
+                        tgb.text("###### Genomsnittligt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
                         tgb.text("#### {average_students}", mode="md")
 
                     # Filters card
@@ -119,6 +119,9 @@ def page_2(df_long, raw_data_table):
                     tgb.chart(
                         figure="{educational_area_chart}", class_name="taipy-chart"
                     )
+                #with tgb.part(class_name="container"):
+                    #tgb.text("## Rådata från Statistiska centralbyrån SCB som visar antal studerande i olika utbildningsområden genom åren", mode="md")
+                    #tgb.table(data="{raw_data_table}", page_size=10)
 
         get_footer()
 

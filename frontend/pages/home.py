@@ -26,13 +26,14 @@ with tgb.Page() as home_page:
                     mode="md",
                     class_name="text-wrapper taipy-text",
                 )
+
             with tgb.layout("1 1 1 1", class_name="card-wrapper"):
                 with tgb.part(class_name="card-link", on_action="goto_kurser"):
                     tgb.text("##### Beviljade kurser", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(
-                            "../../assets/images/01-map.png",
-                            class_name="taipy-img img-size",
+                        "../../assets/images/01-map.png",
+                        class_name="taipy-img img-size",
                         )
                     tgb.text("Antal beviljade kurser per skola geografiskt.")
 
@@ -48,7 +49,7 @@ with tgb.Page() as home_page:
                     tgb.text("Antal studerande över tid per utbildningsområde.")
 
                 with tgb.part(class_name="card-link", on_action="goto_skolor"):
-                    tgb.text("##### Statistik per anordnare", mode="md")
+                    tgb.text("##### Statistik per skola", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(
                             "../../assets/images/03-removebg-preview.png",

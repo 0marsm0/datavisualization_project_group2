@@ -1,6 +1,6 @@
 import taipy.gui.builder as tgb
 from frontend.charts import create_funnel_chart_total, create_funnel_chart_gender
-from backend.data_processing.page_4_data_processing import (
+from backend.data_processing.student_page_data_processing import (
     get_direction_and_year_options,
     prepare_total_data,
     prepare_gender_comparison_funnel_data,

@@ -1,7 +1,7 @@
 import duckdb
 import plotly.express as px
 import plotly.graph_objects as go
-from backend.data_processing.page_1_data_processing import map_df, geo_file
+from backend.data_processing.course_page_data_processing import map_df, geo_file
 
 
 # CHARTS AND STATS FOR THE COURSE PAGE (PAGE 1)
@@ -79,7 +79,7 @@ def plot_area(df, year):
     ).df()
 
     custom_colors = {
-        "Beviljad": "#084083",  # Color for Approved
+        "Beviljad": "#636EFA",  # Color for Approved
         "Avslag": "#ff5e4d",  # Color for Rejected
     }
 
@@ -392,7 +392,7 @@ def create_educational_area_bar(df, selected_area, num_years=5):
                 name=area,
                 line=dict(
                     width=4 if area == selected_area else 1.5,
-                    color="#0077b6" if area == selected_area else "#cccccc",
+                    color="#636EFA" if area == selected_area else "#636363",
                 ),
                 marker=dict(size=6 if area == selected_area else 4),
                 opacity=1.0 if area == selected_area else 0.4,
