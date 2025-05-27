@@ -1,12 +1,10 @@
 import taipy.gui.builder as tgb
-from taipy.gui import Gui
-import plotly.express as px
-import pandas as pd
 from frontend.charts import create_funnel_chart_total, create_funnel_chart_gender
 from backend.data_processing.page_4_data_processing import (
     get_direction_and_year_options,
     prepare_total_data,
     prepare_gender_comparison_funnel_data,
+    get_stage_values,
 )
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
@@ -35,6 +33,20 @@ def update_state(state):
         state.funnel_fig = create_funnel_chart_gender(df)
 
 
+current_values = get_stage_values(direction, year)
+previous_values = get_stage_values(direction, year - 1 if year - 1 in years else year)
+
+
+def format_delta(curr, prev):
+    delta = curr - prev
+    if delta > 0:
+        return f"(+{delta})"
+    elif delta < 0:
+        return f"({delta})"
+    else:
+        return "(0)"
+
+
 with tgb.Page() as student_page:
 
     get_header("studenter")
@@ -47,7 +59,22 @@ with tgb.Page() as student_page:
                     "##### Dynamisk analys av studentflöde: *sökande → behöriga → antagna → examinerade*.",
                     mode="md",
                 )
+
             with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
+                for stage in ["sökande", "behöriga", "antagna", "examinerade"]:
+                    with tgb.part(class_name="card"):
+                        tgb.text(
+                            f"###### {stage.capitalize()}",
+                            mode="md",
+                            class_name="card-h4",
+                        )
+                        tgb.text(f"#### {current_values[stage]}", mode="md")
+                        tgb.text(
+                            f"**{format_delta(current_values[stage], previous_values[stage])}**",
+                            mode="md",
+                        )
+
+            """with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
                     tgb.text("###### Sökande", mode="md", class_name="card-h4")
                     tgb.text("#### 12000", mode="md")
@@ -59,7 +86,7 @@ with tgb.Page() as student_page:
                     tgb.text("#### 6000", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text("###### Examinerade", mode="md", class_name="card-h4")
-                    tgb.text("#### 3000", mode="md")
+                    tgb.text("#### 3000", mode="md")"""
             with tgb.part(class_name="selector-wrapper"):
                 with tgb.layout("1fr 1fr 1fr", gap="1rem", class_name="filters"):
                     with tgb.part():

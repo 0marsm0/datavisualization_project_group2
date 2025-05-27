@@ -131,3 +131,21 @@ def get_direction_and_year_options():
     years.sort()
 
     return directions, years
+
+
+# -----------------------
+
+
+def get_stage_values(direction, year):
+    sheets = load_all_sheets()
+    stages = ["sökande", "behöriga", "antagna", "examinerade"]
+    result = {}
+
+    for stage in stages:
+        df = sheets[stage]
+        df_stage = filter_data_by_direction_and_year(df, direction, year)
+        df_stage = df_stage[df_stage["gender"] == "total"]
+        value = df_stage["value"].values[0] if not df_stage.empty else 0
+        result[stage] = value
+
+    return result
