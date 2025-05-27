@@ -1,6 +1,6 @@
 from taipy.gui import Gui
 
-# from backend.data_processing.page_2_data_processing import load_and_process_page2_data
+
 from frontend.pages.course_page import course_page
 from frontend.pages.education_page import page2_page
 from frontend.pages.school_page import page_3
