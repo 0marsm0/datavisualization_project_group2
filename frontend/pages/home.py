@@ -27,19 +27,24 @@ with tgb.Page() as home_page:
                     class_name="text-wrapper taipy-text",
                 )
 
+            with tgb.part(class_name="section-header"):
+                tgb.text("## Utforska våra dashboards", mode="md")
+                tgb.text(
+                    "*Välj en vy för att fördjupa dig i statistik om beviljanden, studerande och utbildningsområden.*",
+                    mode="md",
+                )
+
             with tgb.layout("1 1 1 1", class_name="card-wrapper"):
-                with tgb.part(class_name="card-link", on_action="goto_kurser"):
+                with tgb.part(class_name="card-link"):
                     tgb.text("##### Beviljade kurser", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(
-                        "../../assets/images/01-map.png",
-                        class_name="taipy-img img-size",
+                            "../../assets/images/01-map.png",
+                            class_name="taipy-img img-size",
                         )
                     tgb.text("Antal beviljade kurser per skola geografiskt.")
 
-                with tgb.part(
-                    class_name="card-link", on_action="goto_utbildningsomrade"
-                ):
+                with tgb.part(class_name="card-link"):
                     tgb.text("##### Studerande över tid", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(
@@ -48,7 +53,7 @@ with tgb.Page() as home_page:
                         )
                     tgb.text("Antal studerande över tid per utbildningsområde.")
 
-                with tgb.part(class_name="card-link", on_action="goto_skolor"):
+                with tgb.part(class_name="card-link"):
                     tgb.text("##### Statistik per skola", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(
@@ -57,7 +62,7 @@ with tgb.Page() as home_page:
                         )
                     tgb.text("Ansökningar, beviljandegrad och utbildningar per skola.")
 
-                with tgb.part(class_name="card-link", on_action="goto_studenter"):
+                with tgb.part(class_name="card-link"):
                     tgb.text("##### Studentflöde", mode="md")
                     with tgb.part(class_name="img-wrapper"):
                         tgb.image(

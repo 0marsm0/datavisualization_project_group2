@@ -1,19 +1,10 @@
 from taipy.gui import Gui
-
-
 from frontend.pages.course_page import course_page
 from frontend.pages.education_page import page2_page
 from frontend.pages.school_page import page_3
 from frontend.pages.home import home_page
 from frontend.pages.student_page import student_page
 from frontend.pages.storytelling import storytelling_page
-
-
-# Ladda data globalt
-# df_long, raw_data_table = load_and_process_page2_data()
-
-# Anropa funktionen för att få sidan och initial state
-# page2_page, page2_state = page_2(df_long, raw_data_table)
 
 
 pages = {

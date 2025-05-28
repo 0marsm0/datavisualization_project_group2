@@ -68,7 +68,6 @@ h6 {
 
 
 .card-link {
-    cursor: pointer;
     padding: 1.5rem;
     background-color: var(--bg-card);
     color: var(--font-white);
@@ -96,12 +95,6 @@ h6 {
     height: 100%;
     max-width: 100%;
     object-fit: contain;
-}
-
-
-.card-link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .text-wrapper {
@@ -238,6 +231,10 @@ h6 {
     margin: 40px 0;
 }
 
+.funnel-info {
+    margin: 40px 0 0 0;
+}
+
 
 /* ===== Custom Table Style ===== */
 .MuiTable-root {
@@ -338,7 +335,7 @@ g.xaxislayer-above text {
 }
 
 .css-72sony {
-    color: var(--font-white) !important;   
+    color: var(--font-white) !important;
 }
 
 .css-72sony:hover {

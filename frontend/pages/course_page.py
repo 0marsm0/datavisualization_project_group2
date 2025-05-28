@@ -65,6 +65,14 @@ with tgb.Page() as course_page:
         with tgb.part(class_name="container"):
             tgb.text("# YH Ansökning för kurser {year}", mode="md")
 
+            with tgb.part(class_name="card description-card"):
+                tgb.text(
+                    "Denna dashboard visar statistik för kurser inom yrkeshögskolan (YH) i Sverige. "
+                    "Här presenteras information om antal sökta och beviljade kurser, beviljandegrad samt tilldelat statsbidrag. "
+                    "Interaktiva visualiseringar och tabeller ger en tydlig överblick över beviljade kurser per skola, utbildningsområde och region.",
+                    mode="md",
+                )
+
             with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
                     tgb.text("###### Sökta kurser", mode="md", class_name="card-h4")
