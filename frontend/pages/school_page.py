@@ -263,23 +263,23 @@ with tgb.Page() as page_3:
                     tgb.text(
                         "###### Sökta utbildningar", mode="md", class_name="card-h4"
                     )
-                    tgb.text("#### {antal_ansökningar}", mode="md")
+                    tgb.text("### {antal_ansökningar}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
                     tgb.text(
                         "###### Beviljade utbildningar", mode="md", class_name="card-h4"
                     )
-                    tgb.text("#### {antal_beviljade}", mode="md")
+                    tgb.text("### {antal_beviljade}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
                     tgb.text(
                         "###### Avslagna utbildningar", mode="md", class_name="card-h4"
                     )
-                    tgb.text("#### {antal_avslag}", mode="md")
+                    tgb.text("### {antal_avslag}", mode="md")
 
                 with tgb.part(class_name="card card-student"):
                     tgb.text("###### Beviljandegrad", mode="md", class_name="card-h4")
-                    tgb.text("#### {beviljandegrad} %", mode="md")
+                    tgb.text("### {beviljandegrad} %", mode="md")
 
             with tgb.part(class_name="card chart-wrapper"):
                 tgb.text(

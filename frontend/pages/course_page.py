@@ -76,20 +76,20 @@ with tgb.Page() as course_page:
             with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
                     tgb.text("###### Sökta kurser", mode="md", class_name="card-h4")
-                    tgb.text("#### {num_courses}", mode="md")
+                    tgb.text("### {num_courses}", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text("###### Beviljade kurser", mode="md", class_name="card-h4")
-                    tgb.text("#### {approved_courses}", mode="md")
+                    tgb.text("### {approved_courses}", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text("###### Beviljandegrad", mode="md", class_name="card-h4")
-                    tgb.text("#### {approved_rate} %", mode="md")
+                    tgb.text("### {approved_rate} %", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text(
                         "###### Tillgängligt statsbidrag",
                         mode="md",
                         class_name="card-h4",
                     )
-                    tgb.text("#### {tot_rev} md SEK", mode="md")
+                    tgb.text("### {tot_rev} md SEK", mode="md")
 
             with tgb.part(class_name="selector-wrapper"):
                 tgb.selector(

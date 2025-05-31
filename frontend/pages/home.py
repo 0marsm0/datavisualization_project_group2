@@ -30,7 +30,7 @@ with tgb.Page() as home_page:
             with tgb.part(class_name="section-header"):
                 tgb.text("## Utforska våra dashboards", mode="md")
                 tgb.text(
-                    "*Välj en vy för att fördjupa dig i statistik om beviljanden, studerande och utbildningsområden.*",
+                    "*Dashboarden ger en snabb överblick inom följande områden:*",
                     mode="md",
                 )
 

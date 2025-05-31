@@ -39,9 +39,15 @@ h3 {
 }
 
 h4,
-h5,
-h6 {
+h5 {
     color: var(--primary);
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+}
+
+h6 {
+    color: var(--font-white);
     font-weight: 300;
     text-align: center;
     margin: 0;
@@ -95,6 +101,12 @@ h6 {
     height: 100%;
     max-width: 100%;
     object-fit: contain;
+}
+
+.taipy-text.filter-label p {
+    margin: 0;
+    font-weight: 700;
+    font-size: smaller;
 }
 
 .text-wrapper {
@@ -341,4 +353,24 @@ g.xaxislayer-above text {
 .css-72sony:hover {
     transform: translateY(-5px);
     color: red;
+}
+
+.combined-layout {
+    align-items: flex-start;
+}
+
+.cards-stack {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-student {
+    width: 100%;
+    min-width: 200px;
+}
+
+.MuiBox-root.css-0 .chart-wrapper,
+.MuiBox-root.css-0 .card-student {
+    margin: 1rem 0 0 0;
 }
