@@ -100,37 +100,6 @@ def page_2(df_long, raw_data_table):
                                 class_name="tgb-selector",
                                 on_change=on_filter_change,
                             )
-                """# Combined stats cards and filters row
-                with tgb.layout(
-                    columns="1 1", gap="1.5rem", class_name="combined-controls"
-                ):
-                    # Stats card 1
-                    with tgb.part(class_name="card card-student"):
-                        tgb.text(
-                            "###### Totalt antal studerande de senaste {actual_years} åren",
-                            mode="md",
-                            class_name="card-h4",
-                        )
-                        tgb.text("#### {total_students}", mode="md")
-
-                    # Stats card 2
-                    with tgb.part(class_name="card card-student"):
-                        tgb.text(
-                            "###### Genomsnittligt antal studerande de senaste {actual_years} åren",
-                            mode="md",
-                            class_name="card-h4",
-                        )
-                        tgb.text("#### {average_students}", mode="md")
-
-                # Main chart area
-                with tgb.part(class_name="card chart-wrapper"):
-                    tgb.text("## {chart_title}", mode="md")
-                    tgb.chart(
-                        figure="{educational_area_chart}", class_name="taipy-chart"
-                    )
-                # with tgb.part(class_name="container"):
-                # tgb.text("## Rådata från Statistiska centralbyrån SCB som visar antal studerande i olika utbildningsområden genom åren", mode="md")
-                # tgb.table(data="{raw_data_table}", page_size=10)"""
 
                 with tgb.layout(
                     columns="3fr 1fr", gap="1.5rem", class_name="combined-layout"
