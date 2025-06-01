@@ -62,14 +62,14 @@ def page_2(df_long, raw_data_table):
         with tgb.part(class_name="main"):
             with tgb.part(class_name="container"):
                 # Page title
-                tgb.text("# Utbildningsområden", mode="md", class_name="page-title")
+                tgb.text("# Utbildningsinriktning", mode="md", class_name="page-title")
 
                 # Description card
                 with tgb.part(class_name="card description-card"):
                     tgb.text(
-                        "Denna dashboard visar antal studerande inom olika utbildningsområden på yrkeshögskolan (YH) i Sverige över tid. "
+                        "Denna dashboard visar antal studerande inom olika utbildningsinriktningar på yrkeshögskolan (YH) i Sverige över tid. "
                         "Data är hämtad från Statistiska centralbyrån (SCB) och omfattar endast YH-utbildningar. "
-                        "Genom att filtrera på utbildningsområde och antal år kan du analysera trender och förändringar.",
+                        "Genom att filtrera på utbildningsinriktningar och antal år kan du analysera trender och förändringar.",
                         mode="md",
                     )
 
@@ -96,7 +96,7 @@ def page_2(df_long, raw_data_table):
                                 "{selected_educational_area}",
                                 lov=df_long["Utbildningsinriktning"].dropna().unique(),
                                 dropdown=True,
-                                label="Välj utbildningsområde:",
+                                label="Välj utbildningsinriktning:",
                                 class_name="tgb-selector",
                                 on_change=on_filter_change,
                             )
