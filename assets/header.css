@@ -1,6 +1,13 @@
 @import "variables.css";
 
-.header {
+
+.MuiTab-root {
+    text-transform: uppercase !important;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.header.sticky.MuiBox-root {
     background-color: var(--bg-card);
     padding: 1rem;
     color: var(--font-white);
@@ -9,9 +16,11 @@
     align-items: center;
     width: 100%;
     z-index: 20;
+    position: sticky;
+    top: 0;
 }
 
-.navbar-content {
+.navbar-content.MuiBox-root {
     width: 100%;
     display: flex;
     align-items: center;
@@ -19,10 +28,9 @@
     gap: 1rem;
 }
 
-.nav-button {
+.MuiButtonBase-root.MuiTab-root {
     background-color: transparent;
-    color: var(--font-white);
-    border: 1px solid var(--primary);
+    color: var(--font-white) !important;
     padding: 10px 20px;
     border-radius: 25px;
     margin: 10px;
@@ -31,18 +39,29 @@
     text-transform: none;
     width: auto;
     transition: all 0.3s ease;
+    opacity: 1;
 }
 
-.nav-button:hover {
+.MuiButtonBase-root.MuiTab-root:hover {
     background-color: var(--primary);
-    color: var(--font-white);
+    color: var(--font-white) !important;
 }
 
-.nav-button:active {
-    outline: var(--primary);
+.MuiButtonBase-root.MuiTab-root.Mui-selected {
+    background-color: var(--primary);
+    color: var(--font-white) !important;
 }
 
-#logo {
+.MuiTabs-indicator {
+    display: none;
+}
+
+#logo.MuiTypography-root {
     color: var(--primary);
     font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.MuiTouchRipple-root {
+    color: var(--font-white);
 }

@@ -65,23 +65,31 @@ with tgb.Page() as course_page:
         with tgb.part(class_name="container"):
             tgb.text("# YH Ansökning för kurser {year}", mode="md")
 
+            with tgb.part(class_name="card description-card"):
+                tgb.text(
+                    "Denna dashboard visar statistik för kurser inom yrkeshögskolan (YH) i Sverige. "
+                    "Här presenteras information om antal sökta och beviljade kurser, beviljandegrad samt tilldelat statsbidrag. "
+                    "Interaktiva visualiseringar och tabeller ger en tydlig överblick över beviljade kurser per skola, utbildningsområde och region.",
+                    mode="md",
+                )
+
             with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
                 with tgb.part(class_name="card"):
                     tgb.text("###### Sökta kurser", mode="md", class_name="card-h4")
-                    tgb.text("#### {num_courses}", mode="md")
+                    tgb.text("### {num_courses}", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text("###### Beviljade kurser", mode="md", class_name="card-h4")
-                    tgb.text("#### {approved_courses}", mode="md")
+                    tgb.text("### {approved_courses}", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text("###### Beviljandegrad", mode="md", class_name="card-h4")
-                    tgb.text("#### {approved_rate} %", mode="md")
+                    tgb.text("### {approved_rate} %", mode="md")
                 with tgb.part(class_name="card"):
                     tgb.text(
                         "###### Tillgängligt statsbidrag",
                         mode="md",
                         class_name="card-h4",
                     )
-                    tgb.text("#### {tot_rev} md SEK", mode="md")
+                    tgb.text("### {tot_rev} md SEK", mode="md")
 
             with tgb.part(class_name="selector-wrapper"):
                 tgb.selector(

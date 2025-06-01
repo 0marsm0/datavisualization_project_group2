@@ -39,9 +39,15 @@ h3 {
 }
 
 h4,
-h5,
-h6 {
+h5 {
     color: var(--primary);
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+}
+
+h6 {
+    color: var(--font-white);
     font-weight: 300;
     text-align: center;
     margin: 0;
@@ -68,7 +74,6 @@ h6 {
 
 
 .card-link {
-    cursor: pointer;
     padding: 1.5rem;
     background-color: var(--bg-card);
     color: var(--font-white);
@@ -98,10 +103,10 @@ h6 {
     object-fit: contain;
 }
 
-
-.card-link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+.taipy-text.filter-label p {
+    margin: 0;
+    font-weight: 700;
+    font-size: smaller;
 }
 
 .text-wrapper {
@@ -238,6 +243,10 @@ h6 {
     margin: 40px 0;
 }
 
+.funnel-info {
+    margin: 40px 0 0 0;
+}
+
 
 /* ===== Custom Table Style ===== */
 .MuiTable-root {
@@ -338,10 +347,30 @@ g.xaxislayer-above text {
 }
 
 .css-72sony {
-    color: var(--font-white) !important;   
+    color: var(--font-white) !important;
 }
 
 .css-72sony:hover {
     transform: translateY(-5px);
     color: red;
+}
+
+.combined-layout {
+    align-items: flex-start;
+}
+
+.cards-stack {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-student {
+    width: 100%;
+    min-width: 200px;
+}
+
+.MuiBox-root.css-0 .chart-wrapper,
+.MuiBox-root.css-0 .card-student {
+    margin: 1rem 0 0 0;
 }

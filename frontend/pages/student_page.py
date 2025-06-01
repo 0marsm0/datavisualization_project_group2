@@ -1,12 +1,10 @@
 import taipy.gui.builder as tgb
-from taipy.gui import Gui
-import plotly.express as px
-import pandas as pd
 from frontend.charts import create_funnel_chart_total, create_funnel_chart_gender
 from backend.data_processing.student_page_data_processing import (
     get_direction_and_year_options,
     prepare_total_data,
     prepare_gender_comparison_funnel_data,
+    get_stage_values,
 )
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
@@ -35,6 +33,20 @@ def update_state(state):
         state.funnel_fig = create_funnel_chart_gender(df)
 
 
+current_values = get_stage_values(direction, year)
+previous_values = get_stage_values(direction, year - 1 if year - 1 in years else year)
+
+
+def format_delta(curr, prev):
+    delta = curr - prev
+    if delta > 0:
+        return f"(+{delta})"
+    elif delta < 0:
+        return f"({delta})"
+    else:
+        return "(0)"
+
+
 with tgb.Page() as student_page:
 
     get_header("studenter")
@@ -42,24 +54,22 @@ with tgb.Page() as student_page:
     with tgb.part(class_name="main"):
         with tgb.part(class_name="container"):
             tgb.text("# Utbildningsanalys — Funnel chart", mode="md")
+
+            with tgb.part(class_name="card description-card"):
+                tgb.text(
+                    "Denna dashboard visualiserar studentflödet inom yrkeshögskolan (YH) i Sverige – från sökande till examinerade. "
+                    "Genom att filtrera på utbildningsområde, år och kön kan du analysera hur många som sökt, blivit behöriga, antagits och examinerats. "
+                    "Data presenteras i form av ett funnel-diagram för att tydligt visa flödet och eventuella tapp mellan stegen.",
+                    mode="md",
+                )
+
             with tgb.part():
                 tgb.text(
                     "##### Dynamisk analys av studentflöde: *sökande → behöriga → antagna → examinerade*.",
                     mode="md",
+                    class_name="funnel-info",
                 )
-            with tgb.layout("1fr 1fr 1fr 1fr", gap="1rem", class_name="summary-cards"):
-                with tgb.part(class_name="card"):
-                    tgb.text("###### Sökande", mode="md", class_name="card-h4")
-                    tgb.text("#### 12000", mode="md")
-                with tgb.part(class_name="card"):
-                    tgb.text("###### Behöriga", mode="md", class_name="card-h4")
-                    tgb.text("#### 9000", mode="md")
-                with tgb.part(class_name="card"):
-                    tgb.text("###### Antagna", mode="md", class_name="card-h4")
-                    tgb.text("#### 6000", mode="md")
-                with tgb.part(class_name="card"):
-                    tgb.text("###### Examinerade", mode="md", class_name="card-h4")
-                    tgb.text("#### 3000", mode="md")
+
             with tgb.part(class_name="selector-wrapper"):
                 with tgb.layout("1fr 1fr 1fr", gap="1rem", class_name="filters"):
                     with tgb.part():

@@ -1,7 +1,9 @@
 import taipy.gui.builder as tgb
 import pandas as pd
 from frontend.charts import create_educational_area_bar
-from backend.data_processing.education_page_data_processing import load_and_process_page2_data
+from backend.data_processing.education_page_data_processing import (
+    load_and_process_page2_data,
+)
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
 
@@ -71,22 +73,8 @@ def page_2(df_long, raw_data_table):
                         mode="md",
                     )
 
-                # Combined stats cards and filters row
-                with tgb.layout(
-                    columns="1 1 1", gap="1.5rem", class_name="combined-controls"
-                ):
-                    # Stats card 1
-                    with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Totalt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
-                        tgb.text("#### {total_students}", mode="md")
-
-                    # Stats card 2
-                    with tgb.part(class_name="card card-student"):
-                        tgb.text("###### Genomsnittligt antal studerande de senaste {actual_years} åren", mode="md", class_name="card-h4")
-                        tgb.text("#### {average_students}", mode="md")
-
-                    # Filters card
-                    with tgb.part(class_name="card filters-card"):
+                with tgb.part(class_name="selector-wrapper"):
+                    with tgb.layout("1fr 1fr", gap="1rem", class_name="filters"):
                         with tgb.part(class_name="filter-group"):
                             tgb.text(
                                 "Antal år att visa:",
@@ -113,15 +101,37 @@ def page_2(df_long, raw_data_table):
                                 on_change=on_filter_change,
                             )
 
-                # Main chart area
-                with tgb.part(class_name="card chart-wrapper"):
-                    tgb.text("## {chart_title}", mode="md")
-                    tgb.chart(
-                        figure="{educational_area_chart}", class_name="taipy-chart"
-                    )
-                #with tgb.part(class_name="container"):
-                    #tgb.text("## Rådata från Statistiska centralbyrån SCB som visar antal studerande i olika utbildningsområden genom åren", mode="md")
-                    #tgb.table(data="{raw_data_table}", page_size=10)
+                with tgb.layout(
+                    columns="3fr 1fr", gap="1.5rem", class_name="combined-layout"
+                ):
+                    # Main chart area (left side)
+                    with tgb.part(class_name="card chart-wrapper"):
+                        tgb.text("## {chart_title}", mode="md")
+                        tgb.chart(
+                            figure="{educational_area_chart}", class_name="taipy-chart"
+                        )
+
+                    # Right sidebar with cards (stacked vertically)
+                    with tgb.layout(
+                        columns="1fr", gap="1rem", class_name="cards-stack"
+                    ):
+                        # Stats card 1
+                        with tgb.part(class_name="card card-student"):
+                            tgb.text(
+                                "###### Totalt antal studerande de senaste {actual_years} åren",
+                                mode="md",
+                                class_name="card-h4",
+                            )
+                            tgb.text("### {total_students}", mode="md")
+
+                        # Stats card 2
+                        with tgb.part(class_name="card card-student"):
+                            tgb.text(
+                                "###### Genomsnittligt antal studerande de senaste {actual_years} åren",
+                                mode="md",
+                                class_name="card-h4",
+                            )
+                            tgb.text("### {average_students}", mode="md")
 
         get_footer()
 
