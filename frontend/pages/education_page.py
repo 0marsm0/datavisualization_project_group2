@@ -1,9 +1,8 @@
 import taipy.gui.builder as tgb
 import pandas as pd
+
 from frontend.charts import create_educational_area_bar
-from backend.data_processing.education_page_data_processing import (
-    load_and_process_page2_data,
-)
+from backend.data_processing.education_page_data_processing import load_and_process_page2_data
 from frontend.components.header import get_header
 from frontend.components.footer import get_footer
 
@@ -33,9 +32,7 @@ def page_2(df_long, raw_data_table):
 
     # Callback function for filters
     def on_filter_change(state):
-        if not state.selected_educational_area or pd.isna(
-            state.selected_educational_area
-        ):
+        if not state.selected_educational_area or pd.isna(state.selected_educational_area):
             return
 
         filtered = (
@@ -73,14 +70,30 @@ def page_2(df_long, raw_data_table):
                         mode="md",
                     )
 
-                with tgb.part(class_name="selector-wrapper"):
-                    with tgb.layout("1fr 1fr", gap="1rem", class_name="filters"):
+                # Combined stats cards and filters row
+                with tgb.layout(columns="1 1 1", gap="1.5rem", class_name="combined-controls"):
+                    # Stats card 1
+                    with tgb.part(class_name="card card-student"):
+                        tgb.text(
+                            f"###### Totalt antal studerande de senaste {actual_years} åren",
+                            mode="md",
+                            class_name="card-h4",
+                        )
+                        tgb.text(f"#### {total_students}", mode="md")
+
+                    # Stats card 2
+                    with tgb.part(class_name="card card-student"):
+                        tgb.text(
+                            f"###### Genomsnittligt antal studerande de senaste {actual_years} åren",
+                            mode="md",
+                            class_name="card-h4",
+                        )
+                        tgb.text(f"#### {average_students}", mode="md")
+
+                    # Filters card
+                    with tgb.part(class_name="card filters-card"):
                         with tgb.part(class_name="filter-group"):
-                            tgb.text(
-                                "Antal år att visa:",
-                                mode="md",
-                                class_name="filter-label",
-                            )
+                            tgb.text("Antal år att visa:", mode="md", class_name="filter-label")
                             tgb.slider(
                                 "{number_of_years}",
                                 min=1,
@@ -101,50 +114,34 @@ def page_2(df_long, raw_data_table):
                                 on_change=on_filter_change,
                             )
 
-                with tgb.layout(
-                    columns="3fr 1fr", gap="1.5rem", class_name="combined-layout"
-                ):
-                    # Main chart area (left side)
-                    with tgb.part(class_name="card chart-wrapper"):
-                        tgb.text("## {chart_title}", mode="md")
-                        tgb.chart(
-                            figure="{educational_area_chart}", class_name="taipy-chart"
-                        )
+                # Main chart area
+                with tgb.part(class_name="card chart-wrapper"):
+                    tgb.text(f"## {chart_title}", mode="md")
+                    tgb.chart(figure="{educational_area_chart}", class_name="taipy-chart")
 
-                    # Right sidebar with cards (stacked vertically)
-                    with tgb.layout(
-                        columns="1fr", gap="1rem", class_name="cards-stack"
-                    ):
-                        # Stats card 1
-                        with tgb.part(class_name="card card-student"):
-                            tgb.text(
-                                "###### Totalt antal studerande de senaste {actual_years} åren",
-                                mode="md",
-                                class_name="card-h4",
-                            )
-                            tgb.text("### {total_students}", mode="md")
-
-                        # Stats card 2
-                        with tgb.part(class_name="card card-student"):
-                            tgb.text(
-                                "###### Genomsnittligt antal studerande de senaste {actual_years} åren",
-                                mode="md",
-                                class_name="card-h4",
-                            )
-                            tgb.text("### {average_students}", mode="md")
+                with tgb.part(class_name="container"):
+                    tgb.text(
+                        "## Antal studerande inom olika utbildninginriktningar de senaste 20 åren",
+                        mode="md",
+                    )
+                    tgb.text("*Tabellen är sorterad efter utbildningsinriktning*", mode="md")
+                    tgb.table(data="{raw_data_table}", page_size=10)
 
         get_footer()
 
-    return page_2, {
-        "number_of_years": number_of_years,
-        "selected_educational_area": selected_educational_area,
-        "educational_area_chart": educational_area_chart,
-        "chart_title": chart_title,
-        "raw_data_table": raw_data_table,
-        "total_students": total_students,
-        "average_students": average_students,
-        "actual_years": actual_years,
-    }
+    return (
+        page_2,
+        {
+            "number_of_years": number_of_years,
+            "selected_educational_area": selected_educational_area,
+            "educational_area_chart": educational_area_chart,
+            "chart_title": chart_title,
+            "raw_data_table": raw_data_table,
+            "total_students": total_students,
+            "average_students": average_students,
+            "actual_years": actual_years,
+        },
+    )
 
 
 # Load data
