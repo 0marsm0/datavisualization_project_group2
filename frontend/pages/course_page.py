@@ -17,7 +17,7 @@ def update_state(state):
     state.df_course = course_school_table(df, year=state.year)
     state.fig = plot_area(df, year=state.year)
     state.fig2 = plot_map(year=state.year)
-    state.tot_rev = round(available_money(state.year)["tot_rev"].sum() / 1e9, 3)
+    state.tot_rev = round(available_money(state.year)["tot_rev"].sum() / 1e6)
     state.df_course = course_school_table(df, school="", year=state.year)
     state.df_money = table_formatter(state.year).rename(
         columns={"tot_rev": "Beviljat statsbidrag (SEK)"}
@@ -55,7 +55,7 @@ approved_courses = course_stats(df, year=year)[1]
 approved_rate = round(course_stats(df, year=year)[2] * 100, 2)
 fig = plot_area(df, year=year)
 fig2 = plot_map(year=year)
-tot_rev = round(available_money(year)["tot_rev"].sum() / 1e9, 3)
+tot_rev = round(available_money(year)["tot_rev"].sum() / 1e6)
 
 
 with tgb.Page() as course_page:
@@ -89,7 +89,7 @@ with tgb.Page() as course_page:
                         mode="md",
                         class_name="card-h4",
                     )
-                    tgb.text("### {tot_rev} md SEK", mode="md")
+                    tgb.text("### {tot_rev} MSEK", mode="md")
 
             with tgb.part(class_name="selector-wrapper"):
                 tgb.selector(
